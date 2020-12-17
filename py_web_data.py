@@ -699,11 +699,13 @@
 # Exercise ----------------------------------------------
 # -------------------------------------------------------
 
+# import time
 # import json
 # import urllib.request, urllib.parse, urllib.error
 
 # count = 0
 # total = 0
+# prog_ = 0
 # url = input("Enter Url - ")
 
 # if len(url) < 1:
@@ -712,50 +714,110 @@
 # data = urllib.request.urlopen(url).read()
 # info = json.loads(data)  # dictionary
 
-# for i in info['comments']:  
+# t_end = time.time() + 60 * 0.1
+
+# while time.time() < t_end:
+
+# for i in info['comments']:   # info['comments] = list of dictionaries
 #     count = count+1
 #     # print(i)
-#     num = i['count']
+#     num = i['count']         # extract values from each key
 #     total = total + int(num)
+#     prog_ = str(prog_) + str('__#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*___')
+#     print(prog_)
+#     print()
 
 # print(f'Sum={total}')
 # print(f'{count} Iteration(s)')
 
 
-# geo json-------------------------------------------------------------
+#geo json--------------------------------------------------------------
 #----------------------------------------------------------------------
 
+# import urllib.request, urllib.parse, urllib.error
+# import json
+
+# serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+
+# while True:
+#     address = input("Enter location: ")
+#     if len(address) < 1 :
+#         break
+#     url = serviceurl + urllib.parse.urlencode({'sensor':'false','address':address})
+
+#     print('Retrieving', url)
+#     uh = urllib.request.urlopen(url)
+#     data = uh.read().decode()
+#     print(f'Retrived {len(data)} characters')
+#     print(data)
+
+#     try: 
+#         js = json.loads(str(data))
+#     except: 
+#         js = None
+
+#     if 'status' not in js or js['status'] != 'OK':
+#         print('==== Failure To Retrieve ====')
+#         print(data)
+#         continue
+
+#     placeid = js["results"][0]['place_id']
+#     print("Place id",placeid)
+
+
+# ----- from website------------------------exercise--------------------
 import urllib.request, urllib.parse, urllib.error
 import json
+import ssl
 
-serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+api_key = False
+# If you have a Google Places API key, enter it here
+# api_key = 'AIzaSy___IDByT70'
+# https://developers.google.com/maps/documentation/geocoding/intro
+
+if api_key is False:
+    api_key = 42
+    serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+else :
+    serviceurl = 'https://maps.googleapis.com/maps/api/geocode/json?'
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
 while True:
-    address = input("Enter location: ")
-    if len(address) < 1 :
-        break
-    url = serviceurl + urllib.parse.urlencode({'sensor':'false','address':address})
+    address = input('Enter location: ')
+    if len(address) < 1: break
+
+    parms = dict()
+    parms['address'] = address
+    if api_key is not False: 
+        parms['key'] = api_key
+    url = serviceurl + urllib.parse.urlencode(parms)
 
     print('Retrieving', url)
-    uh = urllib.request.urlopen(url)
+    uh = urllib.request.urlopen(url, context=ctx)
     data = uh.read().decode()
-    print(f'Retrived {len(data)} characters')
-    print(data)
+    print('Retrieved', len(data), 'characters')
 
-    try: 
-        js = json.loads(str(data))
-    except: 
+    try:
+        js = json.loads(data)
+    except:
         js = None
 
-    if 'status' not in js or js['status'] != 'OK':
+    if not js or 'status' not in js or js['status'] != 'OK':
         print('==== Failure To Retrieve ====')
         print(data)
         continue
 
-    placeid = js["results"][0]['place_id']
-    print("Place id",placeid)
+    print('pretty',json.dumps(js, indent=4))
 
-
+    lat = js['results'][0]['geometry']['location']['lat']
+    lng = js['results'][0]['geometry']['location']['lng']
+    print('lat', lat, 'lng', lng)
+    location = js['results'][0]['formatted_address']
+    print(location)
 
 
 
