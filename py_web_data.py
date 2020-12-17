@@ -692,11 +692,68 @@ import json
 #     lat = js["results"][0]["geometry"]["location"]["lat"]
 #     lng = js["results"][0]["geometry"]["location"]["lng"]
 #     print('lat', lat, 'lng', lng)
-#     location = js['results'][0]['formatted_address']
+#     locati`on = js['results'][0]['formatted_address']
 #     print(location)
 
 
-# ----------------------------------------------------------------
+# Exercise --------
+
+# import json
+# import urllib.request, urllib.parse, urllib.error
+
+# count = 0
+# total = 0
+# url = input("Enter Url - ")
+
+# if len(url) < 1:
+#     url = 'http://py4e-data.dr-chuck.net/comments_42.json'
+
+# data = urllib.request.urlopen(url).read()
+# info = json.loads(data)  # dictionary
+
+# for i in info['comments']:  
+#     count = count+1
+#     # print(i)
+#     num = i['count']
+#     total = total + int(num)
+
+# print(f'Sum={total}')
+# print(f'{count} Iteration(s)')
+
+
+# geo json-------------------------------------------------------------
+#----------------------------------------------------------------------
+
+import urllib.request, urllib.parse, urllib.error
+import json
+
+serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+
+while True:
+    address = input("Enter location: ")
+    if len(address) < 1 :
+        break
+    url = serviceurl + urllib.parse.urlencode({'sensor':'false','address':address})
+
+    print('Retrieving', url)
+    uh = urllib.request.urlopen(url)
+    data = uh.read().decode()
+    print(f'Retrived {len(data)} characters')
+    print(data)
+
+    try: 
+        js = json.loads(str(data))
+    except: 
+        js = None
+
+    if 'status' not in js or js['status'] != 'OK':
+        print('==== Failure To Retrieve ====')
+        print(data)
+        continue
+
+    placeid = js["results"][0]['place_id']
+    print("Place id",placeid)
+
 
 
 

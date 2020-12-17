@@ -759,33 +759,31 @@
 #         print(hours)
 
     
-
-
 # # worked exercise 10
-# fname = input('Enter File name: ')
-# if len(fname) < 1:
-#     fname = 'file.txt'
-# fhand = open(fname)
+fname = input('Enter File name: ')
+if len(fname) < 1:
+    fname = 'file.txt'
+fhand = open(fname)
 
-# count_dict = dict()
-# for line in fhand:
-#     line = line.rstrip()
-#     words = line.split()
-#     # print(words)
-#     for word in words:
-#         # print(word)
-#         if word not in count_dict:
-#             count_dict[word] = 1
-#         elif word in count_dict:
-#             count_dict[word] = count_dict[word] + 1
-# #print(count_dict)
+count_dict = dict()
+for line in fhand:
+    line = line.rstrip()
+    words = line.split()
+    # print(words)
+    for word in words:
+        # print(word)
+        if word not in count_dict:
+            count_dict[word] = 1
+        elif word in count_dict:
+            count_dict[word] = count_dict[word] + 1
+#print(count_dict)
 
-# # x = sorted(count_dict.items())
-# # print(x)
+# x = sorted(count_dict.items())
+# print(x)
 
 
-# # here we want to change the order of the 
-# # dictionary from k,v to v,k
+# here we want to change the order of the 
+# dictionary from k,v to v,k
 # temp = list()
 # for k,v in count_dict.items():
 #     # print(k,v)
