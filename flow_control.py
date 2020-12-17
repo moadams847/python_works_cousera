@@ -411,12 +411,12 @@
 # print("Maximum is", largest)
 # print("Minimum is", smallest)
 
-hrs = input("Enter Hours: ")
-hr = float(hrs)
+# hrs = input("Enter Hours: ")
+# hr = float(hrs)
 
-rph = input('Enter rph: ')
-hp = float(rph)
+# rph = input('Enter rph: ')
+# hp = float(rph)
 
-pay = hr*hp
-print('Pay:', pay)
+# pay = hr*hp
+# print('Pay:', pay)
 
