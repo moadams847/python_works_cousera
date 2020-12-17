@@ -607,7 +607,7 @@
 # import sys
 # sys.path.append('/users/adams/anaconda3/lib/site-packages')
 
-# import json
+# import json------------------------------------------
 
 # data = '''{
 # "name" : "Chuck",
@@ -627,10 +627,10 @@
 # with a list
 # it means we can iterate through
 
-import sys
-sys.path.append('/users/adams/anaconda3/lib/site-packages')
+# import sys
+# sys.path.append('/users/adams/anaconda3/lib/site-packages')
 
-import json
+# import json
 
 # input = '''[
 
@@ -657,7 +657,7 @@ import json
 # print()
 
 
-# service oriented approach
+# service oriented approach--------------------------------------------
 # using application programing interfaces-------------------------------
 
 # import urllib.request, urllib.parse, urllib.error
@@ -694,9 +694,10 @@ import json
 #     print('lat', lat, 'lng', lng)
 #     locati`on = js['results'][0]['formatted_address']
 #     print(location)
+# print('You did not type an address')
 
-
-# Exercise --------
+# Exercise ----------------------------------------------
+# -------------------------------------------------------
 
 # import json
 # import urllib.request, urllib.parse, urllib.error

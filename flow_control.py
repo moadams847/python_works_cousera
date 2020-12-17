@@ -13,12 +13,12 @@
 #     print(i)
 
 
-astr = 'hello Adams'
-try:
-    istr = int(astr)
-except:
-    istr = -1
-print('First', istr)
+# astr = 'hello Adams'
+# try:
+#     istr = int(astr)
+# except:
+#     istr = -1
+# print('First', istr)
 
 
 # astr =123
@@ -304,7 +304,7 @@ print('First', istr)
 #     print(found, value)
 # print('After', found)
 
-# finding the smallest number
+# # finding the smallest number
  
 # smallest_so_far = None 
 # print('Before', smallest_so_far)
@@ -318,7 +318,7 @@ print('First', istr)
       
 # print('After', smallest_so_far)
 
-# finding the biggest number
+# # finding the biggest number
 # big = None
 # print('Before',big)
 # for value in [9,41,12,3,74,15]:
@@ -350,7 +350,7 @@ print('First', istr)
 # print(tot, num, tot / num)
 
 
-# worked exercise modified
+# # worked exercise modified
 # count = 0
 # tot = 0
 # while True:
